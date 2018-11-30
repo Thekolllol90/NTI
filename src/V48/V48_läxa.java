@@ -9,9 +9,11 @@ public class V48_läxa {
 		double radius = 10;
 		System.out.println(volumeOfSphere(radius));
 		
+		String strr = "boi";
+		System.out.println(reverseString(strr));
 		
-		
-		
+		String x = "ccccc";
+		System.out.println(count(x));
 		
 		String str = "neo";
 		System.out.println(piratSpråk(str));
@@ -31,10 +33,10 @@ public class V48_läxa {
 	 * @param str texten man vill vända
 	 * @return den vända texten 
 	 */
-	public static String reverseString(String str) {
+	public static String reverseString(String strr) {
 		String res = "";
-		for (int i = str.length() - 1; i >= 0; i--) {
-			res += str.charAt(i);
+		for (int i = strr.length() - 1; i >= 0; i--) {
+			res += strr.charAt(i);
 		}
 		
 		return res;

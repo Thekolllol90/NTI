@@ -25,6 +25,7 @@ public class methoder {
 	
 	double radius = 10;
 	System.out.print(volumeOfSphere(radius));
+	scanner.close();
 }
 
 	public static double kelvinToCelsius(double kelvin){

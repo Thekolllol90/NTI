@@ -54,33 +54,18 @@ public static int antalTom(String[] names) {
  * @param numbers
  * @return
  */
-public static int[] strörstminst(int[] numbers){
-    int[] list = new int[10];
-    int max = 0;
-    int maxNum = 0;
-    int min = 0;
-    int minNum = 0;
-
-    for(int i = 0; i < numbers.length; i++){ // en lopp beroende på hur lång arrayen är
-        list[numbers[i]] += 1;
-    }
-    for(int i = 0; i < list.length; i++){ // en lopp beroende på hur lång arrayen är
-
-        if(i == 0){
-            min = list[i];
-            continue;
-        }
-        if(list[i] > max){
-            max = list[i];
-            maxNum = i;
-        }
-        if(list[i] <= min){
-            min = list[i - 1];
-            minNum = i;
-        }
-    }
-    int[] maxMin = {maxNum, minNum};
-    return maxMin;
+public static int strörstminst(int[] numbers){
+    int noll = 0;
+    int ett = 0;
+    int två = 0;
+    int tre = 0;
+    int fyra = 0;
+    int fem = 0;
+    int sex = 0;
+    int sju = 0;
+    int åta = 0;
+    int nio = 0;
+    if()
 }
 /**
  * kollar vilken index som namnet drusilla ligger på

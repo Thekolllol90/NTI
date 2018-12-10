@@ -18,83 +18,184 @@ public static void main(String[] args) {
 		System.out.println(antalL(names));
 		System.out.println(long5(names));
 		System.out.println(antaltal(numbers));
+		System.out.println(antalunikanamn(names));
+		System.out.println(vanligastnamn(names));
 }
+/**
+ * kollar antal 7or i en arry
+ * @param numbers listan/arrayen med number
+ * @return antal 7or
+ */
 public static int antal7(int[] numbers) {
 	int result = 0;
-	for (int i = 0; i < numbers.length; i++) {
+	for (int i = 0; i < numbers.length; i++) { // en lopp beroende på hur lång arrayen är
 		if(numbers[i] == 7) {
 			result++;
 		}
 	}
 	return result;
 	}
+/**
+ * räknar hur många gånger tom kommer upp i en array
+ * @param names listan/arrayen med namn
+ * @return antal tom
+ */
 public static int antalTom(String[] names) {
 	int result = 0;
-	for (int i = 0; i < names.length; i++) {
+	for (int i = 0; i < names.length; i++) { // en lopp beroende på hur lång arrayen är
 		if(names[i] == "Tom") {
 			result++;
 		}
 	}
 	return result;
 	}
-public static int störstMinst(int[] numbers) {
-	int result = 0;
-	for (int i = 0; i < numbers.length; i++) {
-		
-	}
-	return result;
+/**
+ * kollar vilket number det finns mest och minst utav
+ * @param numbers
+ * @return
+ */
+public static int[] strörstminst(int[] numbers){
+    int[] list = new int[10];
+    int max = 0;
+    int maxNum = 0;
+    int min = 0;
+    int minNum = 0;
+
+    for(int i = 0; i < numbers.length; i++){ // en lopp beroende på hur lång arrayen är
+        list[numbers[i]] += 1;
+    }
+    for(int i = 0; i < list.length; i++){ // en lopp beroende på hur lång arrayen är
+
+        if(i == 0){
+            min = list[i];
+            continue;
+        }
+        if(list[i] > max){
+            max = list[i];
+            maxNum = i;
+        }
+        if(list[i] <= min){
+            min = list[i - 1];
+            minNum = i;
+        }
+    }
+    int[] maxMin = {maxNum, minNum};
+    return maxMin;
 }
+/**
+ * kollar vilken index som namnet drusilla ligger på
+ * @param names arryen med namn
+ * @return indexen som namnet ligger på
+ */
 public static int index(String[] names) {
 	int res = 0;
-	for (int i = 0; i < names.length; i++) {
+	for (int i = 0; i < names.length; i++) { // en lopp beroende på arrayen
 		if(names[i] == "Drusilla") {
 			res = i;
 		}
 	}
 	return res;
 }
+/**
+ * suman utav alla jämna tal
+ * @param numbers arrayen med talen 
+ * @return summan 
+ */
 public static int summa(int[] numbers) {
 	int result = 0;
-	for (int i = 0; i < numbers.length; i++) {
-		if(numbers[i] == 2) {
-			result = result + 2;
-		}else if(numbers[i] == 4) {
+	for (int i = 0; i < numbers.length; i++) { //lopp beroende på array
+		if(numbers[i] == 2) { //om 2 lägg till 2
+			result = result + 2; 
+		}else if(numbers[i] == 4) { // om 4 lägg till 4
 			result = result + 4;
-		}else if(numbers[i] == 6) {
+		}else if(numbers[i] == 6) { // -||-
 			result = result + 6;
-		}else if(numbers[i] == 8) {
+		}else if(numbers[i] == 8) { // -||-
 			result = result + 8;
 		}
 	}
 	return result;
 }
+/**
+ * räknar hur många namn som börjar på bokstaven L
+ * @param names arrayen med namn
+ * @return antal L 
+ */
 public static int antalL(String[] names) {
 	int result = 0;
-	for (int i = 0; i < names.length; i++) {
-		if(names[i].charAt(0) == 'L') {
+	for (int i = 0; i < names.length; i++) { // lopp beronde på array
+		if(names[i].charAt(0) == 'L') { // kollar om första bokstaven = L
 			result++;
 		}
 	}
 	return result;
 }
+/**
+ * kollar hur många namn som är 5 bokstäver lång
+ * @param names arrayen med namn
+ * @return hur många namn
+ */
 public static int long5(String[] names) {
 	int result = 0;
-	for (int i = 0; i < names.length; i++) {
-		if(names[i].length() ==  5) {
+	for (int i = 0; i < names.length; i++) { // array beroende utav array
+		if(names[i].length() ==  5) { // kollar längden
 			result++;
 		}
 	}
 	return result;
 }
+/**
+ * kollar hur många det finns utav alla tal
+ * @param numbers arrayen med number
+ * @return hur många det finns utav alla tal
+ */
 public static int[] antaltal(int[] numbers){
     int[] result = new int[10];
-
-    for(int i=0;i<numbers.length;i++){
-    	
+    for(int i = 0; i < numbers.length; i++){ // lopp berodende utav array
         result[numbers[i]]++;
-        
     }
-    
     return result;
+}
+/**
+ * räknar ut hur många unika namn det finns
+ * @param names array med namn
+ * @return antal namn
+ */
+public static int antalunikanamn(String[] names){
+    int result = 0;
+    for (int i = 0; i < names.length; i++) { // lopp berodnde utav array
+        int j;
+        for (j = 0; j < names.length; j++) { // lopp berodnde utav array
+            if(names[i].equals(names[j])) { // om namnet inte redan har lästst lägg till 1 till result
+                break;  
+            }
+        }
+        if(i == j) {
+            result++;
+        }
+    }
+    return result;
+}
+/**
+ * kollar vilket namn som är valigast
+ * @param names array med namn
+ * @return vanligaste namnet
+ */
+public static String vanligastnamn(String[] names){
+    int Index = 0;
+    int Length = 0;
+    for (int i = 0; i < names.length; i++) { // lopp berodnde utav array
+        int res = 0;
+        for (int j = 0; j < names.length; j++) { // lopp berodnde utav array
+            if(names[i].equals(names[j])) {
+                res++;
+            }
+        }
+        if(res > Length) {
+            Length = res;
+            Index = i;  
+        }
+    }
+    return names[Index];
 }
 }

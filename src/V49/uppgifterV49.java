@@ -17,6 +17,7 @@ public static void main(String[] args) {
 		System.out.println(summa(numbers));
 		System.out.println(antalL(names));
 		System.out.println(long5(names));
+		System.out.println(antaltal(numbers));
 }
 public static int antal7(int[] numbers) {
 	int result = 0;
@@ -84,5 +85,16 @@ public static int long5(String[] names) {
 		}
 	}
 	return result;
+}
+public static int[] antaltal(int[] numbers){
+    int[] result = new int[10];
+
+    for(int i=0;i<numbers.length;i++){
+    	
+        result[numbers[i]]++;
+        
+    }
+    
+    return result;
 }
 }

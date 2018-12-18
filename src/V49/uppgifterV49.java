@@ -65,7 +65,7 @@ public static int strörstminst(int[] numbers){
     int sju = 0;
     int åta = 0;
     int nio = 0;
-    if()
+    return 0;
 }
 /**
  * kollar vilken index som namnet drusilla ligger på

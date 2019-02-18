@@ -9,18 +9,18 @@ public class NumberSpel {
 		int tal = random.nextInt(101); // hämtar ett number mellan 0-100
 		System.out.println("Im thinking of a number betwen 0 and 100");
 		
-		Spel(tal);
+		Spel(tal); // hämtar methoden 
 	}
 	
 	
 	public static int Spel(int tal) {
 		Scanner scanner = new Scanner(System.in); // skapar en ny scanner
 		Boolean spel = true; 
+		int y = 0;
 		
 		while(spel=true) { // skapar en while loop
 			
 			int x = scanner.nextInt();
-			int y = 0;
 			y++;
 			
 			if(x < tal) { // om talet man skriver är mindre än talet skriver den högre
@@ -29,8 +29,9 @@ public class NumberSpel {
 				System.out.println("Lower");
 			} else if(x == tal) { // om man gissar rätt tal skriver den att man vunnit
 				System.out.println();
+				System.out.println();
 				System.out.println("You Won");
-				System.out.println("It took you" + y + "tries");
+				System.out.println("It took you " + y + " tries");
 				break; // går ur loopen
 			}
 		}

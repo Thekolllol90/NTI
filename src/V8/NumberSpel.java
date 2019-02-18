@@ -5,11 +5,12 @@ import java.util.Random;// importerar random
 public class NumberSpel {
 	public static void main(String[] args) {
 	
-		Random random = new Random(); // genererar ett random tal
-		int tal = random.nextInt(101); // hämtar ett number mellan 0-100
 		boolean again = true;
 		Scanner sc = new Scanner(System.in);
-	while(again = true){
+		
+	while(again == true){
+		Random random = new Random(); // genererar ett random tal
+		int tal = random.nextInt(101); // hämtar ett number mellan 0-100
 		System.out.println("Im thinking of a number betwen 0 and 100");
 		
 		Spel(tal); // hämtar methoden 
@@ -18,10 +19,10 @@ public class NumberSpel {
 		System.out.println();
 		System.out.println("Y" + "    " + "N");
 		String ag = sc.next();
-		if(ag.toLowerCase() == "y") { // gör alla siffror till lowercase och kollar om man skriver Y
+		if(ag.toLowerCase().equals("y")) { // gör alla siffror till lowercase och kollar om man skriver Y
 			again = true;
-		}else if(ag.toLowerCase() == "n") { // gör alla siffror till lowercase och kollar om man skriver N
-			again = false;
+		}else if(ag.toLowerCase().equals("n")) { // gör alla siffror till lowercase och kollar om man skriver N
+			again = false; // stoppar loopen som kör om spelet
 		}
 		}
 	}

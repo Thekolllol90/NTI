@@ -18,10 +18,10 @@ public class NumberSpel {
 		System.out.println();
 		System.out.println("Y" + "    " + "N");
 		String ag = sc.next();
-		if(ag.toLowerCase() == "y") {
+		if(ag.toLowerCase() == "y") { // gör alla siffror till lowercase och kollar om man skriver Y
 			again = true;
-		}else if(ag.toLowerCase() == "n") {
-			break;
+		}else if(ag.toLowerCase() == "n") { // gör alla siffror till lowercase och kollar om man skriver N
+			again = false;
 		}
 		}
 	}

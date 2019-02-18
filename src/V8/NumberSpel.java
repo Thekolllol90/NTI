@@ -7,9 +7,23 @@ public class NumberSpel {
 	
 		Random random = new Random(); // genererar ett random tal
 		int tal = random.nextInt(101); // hämtar ett number mellan 0-100
+		boolean again = true;
+		Scanner sc = new Scanner(System.in);
+	while(again = true){
 		System.out.println("Im thinking of a number betwen 0 and 100");
 		
 		Spel(tal); // hämtar methoden 
+		
+		System.out.println("Do you want to play again?");
+		System.out.println();
+		System.out.println("Y" + "    " + "N");
+		String ag = sc.next();
+		if(ag.toLowerCase() == "y") {
+			again = true;
+		}else if(ag.toLowerCase() == "n") {
+			break;
+		}
+		}
 	}
 	
 	

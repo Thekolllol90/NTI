@@ -10,7 +10,7 @@ import java.util.Scanner; //importerar scanner
 
 public class NumberSpel {
 
-	public static void sparaArray(int[] array) {
+	public static void sparaArray(int[] array) { // en method som sparar en array i ett dokument
 		FileWriter fileWriter;
 		try {
 			fileWriter = new FileWriter("array.txt");
@@ -28,29 +28,29 @@ public class NumberSpel {
 
 	}
 
-	public static int[] hämtaArray() {
+	public static int[] hämtaArray() { // en method som hämtar en sparad array
 		FileReader fileReader;
 		try {
 			fileReader = new FileReader("array.txt");
-            BufferedReader reader = new BufferedReader(fileReader);
+			BufferedReader reader = new BufferedReader(fileReader);
 
-            String line = reader.readLine();
-            String[] values = line.split(",");
-            
-            int[] result = new int[values.length];
-            for(int i = 0; i < values.length; i++) {
-            	result[i] = Integer.parseInt(values[i]);
-            }
-            
-            reader.close();
-            fileReader.close();
-            
-            return result;
+			String line = reader.readLine();
+			String[] values = line.split(",");
+
+			int[] result = new int[values.length];
+			for (int i = 0; i < values.length; i++) {
+				result[i] = Integer.parseInt(values[i]);
+			}
+
+			reader.close();
+			fileReader.close();
+
+			return result;
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		return null;
 	}
 
@@ -64,32 +64,38 @@ public class NumberSpel {
 				99, 88, 33, 44, 55 };
 
 		intarray = hämtaArray();
-		
-		for (int i = 0; i < intarray.length; i++) { // skriver ut arrayen som en poång lista
-			System.out.println(intarray[i]);
-		}
-
 
 		while (again == true) {
 
 			System.out.println("choose a difficulty");
 			System.out.println();
-			System.out.println("1.easy   2.medium   3.hard  4.imposible");
+			System.out.println("1.easy   2.medium   3.hard  4.imposible"); // låter använderen välja en svårhetsgrad
 			int dif = sc.nextInt();
 
 			int tal = 0;
 			int val = 0;
+			int rep = 0;
 
 			if (dif == 1) { // ger olika antal möjliga tal beroende på vilken svårhetsgrad man väljer
-				val = 4;
+				val = 101;
+				System.out.println("Im thinking of a number betwen 0 and " + (val - 1));
+				tal = random.nextInt(val);
+				rep = Spel(tal); // hämtar methoden
 			} else if (dif == 2) {
 				val = 151;
+				System.out.println("Im thinking of a number betwen 0 and " + (val - 1));
+				tal = random.nextInt(val);
+				rep = Spel(tal); // hämtar methoden
 			} else if (dif == 3) {
 				val = 201;
+				System.out.println("Im thinking of a number betwen 0 and " + (val - 1));
+				tal = random.nextInt(val);
+				rep = Spel(tal); // hämtar methoden
+			} else if (dif == 4) {
+				val = 201;
+				System.out.println("Im thinking of a number betwen 0 and " + (val - 1));
+				 rep = Spelim(tal);
 			}
-			System.out.println("Im thinking of a number betwen 0 and " + (val - 1));
-			tal = random.nextInt(val);
-			int rep = Spel(tal); // hämtar methoden
 
 			bubbleSort(intarray); // hämtar bubble sort som sorterar arrayen
 
@@ -168,6 +174,35 @@ public class NumberSpel {
 			} else if (x > tal) { // om talet man skriver är störe än talet skriver den läggre
 				System.out.println("Lower");
 			} else if (x == tal) { // om man gissar rätt tal skriver den att man vunnit
+				System.out.println();
+				System.out.println();
+				System.out.println("You Won");
+				System.out.println("It took you " + y + " tries");
+				break; // går ur loopen
+			}
+		}
+
+		return y;
+	}
+
+	public static int Spelim(int tal) { // samma som det andra spelet men genererar ett nytt tal efter varje försök
+		Scanner scanner = new Scanner(System.in); // skapar en ny scanner
+		boolean spel = true;
+		int y = 0;
+		int mip = 0;
+
+		while (spel == true) { // skapar en while loop
+
+			mip = (int) (Math.random()*200.0); // genererar ett random tal			
+			
+			int x = scanner.nextInt();
+			y++;
+
+			if (x < mip) { // om talet man skriver är mindre än talet skriver den högre
+				System.out.println("higher");
+			} else if (x > mip) { // om talet man skriver är störe än talet skriver den läggre
+				System.out.println("Lower");
+			} else if (x == mip) { // om man gissar rätt tal skriver den att man vunnit
 				System.out.println();
 				System.out.println();
 				System.out.println("You Won");

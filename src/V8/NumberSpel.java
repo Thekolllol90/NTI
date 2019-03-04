@@ -35,10 +35,10 @@ public class NumberSpel {
 			BufferedReader reader = new BufferedReader(fileReader);
 
 			String line = reader.readLine();
-			String[] values = line.split(",");
+			String[] values = line.split(","); 
 
 			int[] result = new int[values.length];
-			for (int i = 0; i < values.length; i++) {
+			for (int i = 0; i < values.length; i++) {		//lägger numret på nästa index i en array
 				result[i] = Integer.parseInt(values[i]);
 			}
 
@@ -94,12 +94,12 @@ public class NumberSpel {
 			} else if (dif == 4) {
 				val = 201;
 				System.out.println("Im thinking of a number betwen 0 and " + (val - 1));
-				 rep = Spelim(tal);
+				rep = Spelim(tal);
 			}
 
 			bubbleSort(intarray); // hämtar bubble sort som sorterar arrayen
 
-			if (rep < intarray[intarray.length - 1]) {
+			if (rep < intarray[intarray.length - 1]) { // om det sörsta antalet gissnigar är störe än det nya talet byts den ut
 				intarray[intarray.length - 1] = rep;
 			}
 
@@ -193,8 +193,8 @@ public class NumberSpel {
 
 		while (spel == true) { // skapar en while loop
 
-			mip = (int) (Math.random()*200.0); // genererar ett random tal			
-			
+			mip = (int) (Math.random() * 200.0); // genererar ett random tal
+
 			int x = scanner.nextInt();
 			y++;
 

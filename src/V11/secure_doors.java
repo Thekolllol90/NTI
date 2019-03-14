@@ -7,7 +7,7 @@ public class secure_doors {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("How many people?");
-		int antal = scanner.nextInt();
+		int antal = Integer.parseInt(scanner.nextLine());
 		boolean boi = true;
 		
 		ArrayList<String> nameList = new ArrayList<>(antal);
@@ -24,16 +24,30 @@ public class secure_doors {
 				for(int i = 0; i < nameList.size(); i++) {
 					if(nameList.get(i).equals(name)) {
 						yeet = true;
-						System.out.println(" enterd (anomely) " + name);
+						System.out.println(name + " enterd (anomely)");
 						
 						break;
 					}
 				}
-				nameList.add(name);
-					
-			}else if(command.equals("exit")) {
-				nameList.remove(name);
 				
+				if(!yeet) {
+				nameList.add(name);
+				System.out.println(name + " entered");
+				}			
+			}else if(command.equals("exit")) {
+				boolean yeet = false;
+				for(int i = 0; i < nameList.size(); i++) {
+					if(nameList.get(i).equals(name)) {
+						yeet = true;
+						nameList.remove(i);
+						System.out.println(name + " exited");
+						break;
+					}
+				}
+				
+				if(!yeet) {
+					System.out.println(name + " exited (anomely)");
+				}
 				
 			}
 			

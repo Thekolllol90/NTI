@@ -31,7 +31,7 @@ public class secure_doors {
 				}
 				
 				if(!yeet) {		//om namnet inte finns i arrayListen
-				nameList.add(name);
+				nameList.add(name); // lägger till personen i listan
 				System.out.println(name + " entered");
 				}			
 			}else if(command.equals("exit")) { // om man skriver exit
@@ -39,7 +39,7 @@ public class secure_doors {
 				for(int i = 0; i < nameList.size(); i++) { // kollar igenom arrayListen
 					if(nameList.get(i).equals(name)) {
 						yeet = true;
-						nameList.remove(i);
+						nameList.remove(i);  // tar bort personen från listan
 						System.out.println(name + " exited");
 						break; // slutar kolla namn
 					}
@@ -52,5 +52,6 @@ public class secure_doors {
 			}
 			
 		}
+		scanner.close();
 	}
 }

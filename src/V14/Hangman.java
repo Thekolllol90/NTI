@@ -103,15 +103,20 @@ public class Hangman {
 				if(wrongLetter[i] == '_' && rightLetter) {
 					wrongLetter[i] = guessLetter;
 					rightLetter = true;
+
+					if(loop >= 10) {    // fixa den här shiten
+						loop = 0;
+					}
 				} else {
-					loop++;
+					rightLetter = true;
+
 				}
 			}
 			drawMan(wrong, typeWord, wrongLetter);
 			if(right == splitWord.length) {
 					window.clear();
 					window.println("you won!!");
-					window.println("it took you" + guess + "tries");
+					window.println("it took you " + guess + " tries");
 					try {
 						Thread.sleep(2000);
 					} catch (InterruptedException e) {
@@ -175,15 +180,67 @@ public class Hangman {
 		return hang;
 	}	
 	public static void drawMan(int wrong, char[] typeWord, char[] wrongLetter) {
+		boolean continuee = true;
+		char button;
+		while(continuee) {
 		window.clear();
 		window.println(Arrays.toString(typeWord));
+		
 		window.println();
 		window.println("Wrong Letters");
 		window.println(Arrays.toString(wrongLetter));
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
+		
+		window.println();
+		window.print("To continue press space");
+		button = window.nextChar();
+		
+		if(button == ' ') {
+			continuee = false;
+		}
+		}
+		window.clear();
+		if(wrong == 1) {
+			window.print("----------");
+		} else if(wrong == 2) {
+			window.println("     |    ");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.print("-----|----");
+		} else if(wrong == 3) {
+			window.println("     _________    ");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.print("-----|----");
+		} else if(wrong == 3) {
+			window.println("     _________    ");
+			window.println("     |       | ");
+			window.println("     |       |");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.print("-----|----");
+		} else if(wrong == 3) {
+			window.println("     _________    ");
+			window.println("     |       | ");
+			window.println("     |       |");
+			window.println("     |       O ");
+			window.println("     |      /|");
+			window.println("     |    ");
+			window.println("     |    ");
+			window.print("-----|----");
+		} else if(wrong == 3) {
+			window.println("     _________    ");
+			window.println("     |       | ");
+			window.println("     |       |");
+			window.println("     |       O ");
+			window.println("     |      /|");
+			window.println("     |       |");
+			window.println("     |      /");
+			window.print("-----|----");
 		}
 	}
 	

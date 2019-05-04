@@ -62,18 +62,18 @@ public class Hangman {
 			invalid();
 		}
 		char[] splitWord = stringToArrayList(playWord);	
-		hangman_play(splitWord);
+		hangman_play(splitWord,playWord);
 	}
 	
-	public static void hangman_play(char[] splitWord) {
+	public static void hangman_play(char[] splitWord, String playWord) {
 		boolean hang  = true;
 		boolean game = true;
 		int wrong = 0;
 		int right = 0;
 		int guess = 0;
 		char guessLetter = ' ';
-		char[] typeWord = new char[splitWord.length];
-		for(int i = splitWord.length; i > 0; i--) {
+		char[] typeWord = new char[playWord.length()];
+		for(int i = 0; i < playWord.length(); i++) {
 			typeWord[i] = '_';
 		}
 		while(hang) {
@@ -82,17 +82,20 @@ public class Hangman {
 			window.clear();
 			window.println("Type a letter");
 			guessLetter = window.nextChar();
-			for(int i = 0; i < splitWord.length; i++) {
-				if(splitWord[i] == '_') {
+			for(int i = 0; i < playWord.length(); i++) {
+				if(typeWord[i] == '_') {
 					if(splitWord[i] == guessLetter) {
-						splitWord[i] = guessLetter;
+						typeWord[i] = guessLetter;
 						right++;
 					}else {
-						wrong++;					}
+						wrong++;					
+					}
 				}
 			}
 			drawMan(wrong, typeWord);
-			
+			if(right == splitWord.length) {
+				
+			}
 			}
 			hang = playAgain();
 		}

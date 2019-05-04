@@ -68,13 +68,19 @@ public class Hangman {
 	public static void hangman_play(char[] splitWord, String playWord) {
 		boolean hang  = true;
 		boolean game = true;
+		boolean rightLetter = true;
 		int wrong = 0;
 		int right = 0;
 		int guess = 0;
+		int loop = 1;
 		char guessLetter = ' ';
+		char[] wrongLetter = new char[29];
 		char[] typeWord = new char[playWord.length()];
 		for(int i = 0; i < playWord.length(); i++) {
 			typeWord[i] = '_';
+		}
+		for(int i = 0; i < 29; i++) {
+			wrongLetter[i] = '_';
 		}
 		while(hang) {
 			while(game) {
@@ -87,15 +93,32 @@ public class Hangman {
 					if(splitWord[i] == guessLetter) {
 						typeWord[i] = guessLetter;
 						right++;
+						rightLetter = false;
 					}else {
 						wrong++;					
 					}
 				}
 			}
-			drawMan(wrong, typeWord);
-			if(right == splitWord.length) {
-				
+			for(int i = 0; i < loop; i++) {
+				if(wrongLetter[i] == '_' && rightLetter) {
+					wrongLetter[i] = guessLetter;
+					rightLetter = true;
+				} else {
+					loop++;
+				}
 			}
+			drawMan(wrong, typeWord, wrongLetter);
+			if(right == splitWord.length) {
+					window.clear();
+					window.println("you won!!");
+					window.println("it took you" + guess + "tries");
+					try {
+						Thread.sleep(2000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					game = false;
+				}
 			}
 			hang = playAgain();
 		}
@@ -151,9 +174,12 @@ public class Hangman {
 		}
 		return hang;
 	}	
-	public static void drawMan(int wrong, char[] typeWord) {
+	public static void drawMan(int wrong, char[] typeWord, char[] wrongLetter) {
 		window.clear();
-		window.print(Arrays.toString(typeWord));
+		window.println(Arrays.toString(typeWord));
+		window.println();
+		window.println("Wrong Letters");
+		window.println(Arrays.toString(wrongLetter));
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {

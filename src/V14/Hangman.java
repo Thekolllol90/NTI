@@ -36,8 +36,10 @@ public class Hangman {
 		}
 	}
 	public static void hangman(){
+		boolean hangman = true;
 		String playWord = "";
 		int word;
+		while (hangman) {
 		window.clear();
 		window.println("are you going to play with");
 		window.println("a friend or alone?");
@@ -45,7 +47,9 @@ public class Hangman {
 		char type = window.nextChar();
 		if(type == '1') {
 			playWord = generatedWord();
+			hangman = false;
 		} else if(type == '2') {
+			hangman = false;
 			window.clear();
 			window.println("Do you want to use a generated");
 			window.println("word or your own word?");
@@ -60,6 +64,7 @@ public class Hangman {
 			}
 		} else {
 			invalid();
+		}
 		}
 		char[] splitWord = stringToArrayList(playWord);	
 		hangman_play(splitWord,playWord);
@@ -83,9 +88,9 @@ public class Hangman {
 			wrongLetter[i] = '_';
 		}
 		while(hang) {
+			window.clear();
 			while(game) {
 			guess++;
-			window.clear();
 			window.println("Type a letter");
 			guessLetter = window.nextChar();
 			for(int i = 0; i < playWord.length(); i++) {
@@ -182,17 +187,7 @@ public class Hangman {
 	public static boolean drawMan(int wrong, char[] typeWord, char[] wrongLetter, boolean game) {
 		window.clear();
 		window.println(Arrays.toString(typeWord));
-		
-		window.println();
-		window.println("Wrong Letters");
-		window.println(Arrays.toString(wrongLetter));
-		
-		window.println();
-		window.print("To continue press space");
-		window.nextChar();
-		
-		
-		window.clear();
+
 		if(wrong == 1) {
 			window.print("----------");
 		} else if(wrong == 2) {
@@ -241,7 +236,7 @@ public class Hangman {
 			window.println("     |       | ");
 			window.println("     |       |");
 			window.println("     |       O ");
-			window.println("     |      /|");
+			window.println("     |      /|\\");
 			window.println("     |       |");
 			window.println("     |      /");
 			window.print("-----|----");
@@ -264,8 +259,9 @@ public class Hangman {
 			game = false;
 		}
 		window.println();
-		window.print("To continue press space");
-		window.nextChar();
+		window.println("Wrong Letters");
+		window.println(Arrays.toString(wrongLetter));
+		
 		return game;
 	}
 	

@@ -74,12 +74,12 @@ public class Hangman {
 		int guess = 0;
 		int loop = 1;
 		char guessLetter = ' ';
-		char[] wrongLetter = new char[29];
+		char[] wrongLetter = new char[10];
 		char[] typeWord = new char[playWord.length()];
 		for(int i = 0; i < playWord.length(); i++) {
 			typeWord[i] = '_';
 		}
-		for(int i = 0; i < 29; i++) {
+		for(int i = 0; i < 10; i++) {
 			wrongLetter[i] = '_';
 		}
 		while(hang) {
@@ -101,18 +101,17 @@ public class Hangman {
 				if(wrongLetter[i] == '_' && rightLetter) {
 					wrongLetter[i] = guessLetter;
 					rightLetter = true;
-					wrong++;					
-					
-					if(loop >= 10) {    
-						loop = 0;
-					}
+					wrong++;			
+
+				} else if(rightLetter){
+					loop++;
 				} else {
 					rightLetter = true;
-
+	
 				}
 			}
 
-			drawMan(wrong, typeWord, wrongLetter);
+			game = drawMan(wrong, typeWord, wrongLetter, game);
 			if(right == splitWord.length) {
 					window.clear();
 					window.println("you won!!");
@@ -179,7 +178,7 @@ public class Hangman {
 		}
 		return hang;
 	}	
-	public static void drawMan(int wrong, char[] typeWord, char[] wrongLetter) {
+	public static boolean drawMan(int wrong, char[] typeWord, char[] wrongLetter, boolean game) {
 		boolean continuee = true;
 		char button;
 		while(continuee) {
@@ -260,12 +259,19 @@ public class Hangman {
 			window.println("     |      /|\\");
 			window.println("     |       |");
 			window.println("     |      / \\");
-			window.print("-----|----");
+			window.println("-----|----");
+			
+			window.println();
+			window.println("You lose!");
+			window.println();
+			window.print("To continue press space");
+			button = window.nextChar();
+			game = false;
 		}
 		window.println();
 		window.print("To continue press space");
 		button = window.nextChar();
-
+		return game;
 	}
 	
 	

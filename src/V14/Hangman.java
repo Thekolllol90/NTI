@@ -97,6 +97,7 @@ public class Hangman {
 					}
 				}
 			}
+			loop = 1;
 			for(int i = 0; i < loop; i++) {
 				if(wrongLetter[i] == '_' && rightLetter) {
 					wrongLetter[i] = guessLetter;
@@ -124,7 +125,7 @@ public class Hangman {
 					game = false;
 				}
 			}
-			hang = playAgain();
+			hang = false;
 		}
 	}
 	
@@ -157,7 +158,7 @@ public class Hangman {
 		char[] splitWord = playWord.toCharArray();
 		return splitWord;
 	}
-	public static boolean playAgain() {
+	/*public static boolean playAgain() {
 		boolean hang = false;
 		boolean choose = true;
 		
@@ -177,11 +178,8 @@ public class Hangman {
 			} 
 		}
 		return hang;
-	}	
+	}	*/
 	public static boolean drawMan(int wrong, char[] typeWord, char[] wrongLetter, boolean game) {
-		boolean continuee = true;
-		char button;
-		while(continuee) {
 		window.clear();
 		window.println(Arrays.toString(typeWord));
 		
@@ -191,12 +189,9 @@ public class Hangman {
 		
 		window.println();
 		window.print("To continue press space");
-		button = window.nextChar();
+		window.nextChar();
 		
-		if(button == ' ') {
-			continuee = false;
-		}
-		}
+		
 		window.clear();
 		if(wrong == 1) {
 			window.print("----------");
@@ -265,12 +260,12 @@ public class Hangman {
 			window.println("You lose!");
 			window.println();
 			window.print("To continue press space");
-			button = window.nextChar();
+			window.nextChar();
 			game = false;
 		}
 		window.println();
 		window.print("To continue press space");
-		button = window.nextChar();
+		window.nextChar();
 		return game;
 	}
 	

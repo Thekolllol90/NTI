@@ -94,8 +94,6 @@ public class Hangman {
 						typeWord[i] = guessLetter;
 						right++;
 						rightLetter = false;
-					}else {
-						wrong++;					
 					}
 				}
 			}
@@ -103,8 +101,9 @@ public class Hangman {
 				if(wrongLetter[i] == '_' && rightLetter) {
 					wrongLetter[i] = guessLetter;
 					rightLetter = true;
-
-					if(loop >= 10) {    // fixa den här shiten
+					wrong++;					
+					
+					if(loop >= 10) {    
 						loop = 0;
 					}
 				} else {
@@ -112,6 +111,7 @@ public class Hangman {
 
 				}
 			}
+
 			drawMan(wrong, typeWord, wrongLetter);
 			if(right == splitWord.length) {
 					window.clear();
@@ -214,7 +214,7 @@ public class Hangman {
 			window.println("     |    ");
 			window.println("     |    ");
 			window.print("-----|----");
-		} else if(wrong == 3) {
+		} else if(wrong == 4) {
 			window.println("     _________    ");
 			window.println("     |       | ");
 			window.println("     |       |");
@@ -223,7 +223,8 @@ public class Hangman {
 			window.println("     |    ");
 			window.println("     |    ");
 			window.print("-----|----");
-		} else if(wrong == 3) {
+			window.changeTextColor(Color.yellow);
+		} else if(wrong == 5) {
 			window.println("     _________    ");
 			window.println("     |       | ");
 			window.println("     |       |");
@@ -232,7 +233,7 @@ public class Hangman {
 			window.println("     |    ");
 			window.println("     |    ");
 			window.print("-----|----");
-		} else if(wrong == 3) {
+		} else if(wrong == 6) {
 			window.println("     _________    ");
 			window.println("     |       | ");
 			window.println("     |       |");
@@ -241,7 +242,30 @@ public class Hangman {
 			window.println("     |       |");
 			window.println("     |      /");
 			window.print("-----|----");
+		} else if(wrong == 7) {
+			window.println("     _________    ");
+			window.println("     |       | ");
+			window.println("     |       |");
+			window.println("     |       O ");
+			window.println("     |      /|");
+			window.println("     |       |");
+			window.println("     |      /");
+			window.print("-----|----");
+			window.changeTextColor(Color.red);
+		}else if(wrong == 8) {
+			window.println("     _________    ");
+			window.println("     |       | ");
+			window.println("     |       |");
+			window.println("     |       O ");
+			window.println("     |      /|\\");
+			window.println("     |       |");
+			window.println("     |      / \\");
+			window.print("-----|----");
 		}
+		window.println();
+		window.print("To continue press space");
+		button = window.nextChar();
+
 	}
 	
 	

@@ -9,7 +9,7 @@ import hangman.HangmanConsoleWindow;
 public class Hangman {
 	
 	private static HangmanConsoleWindow window = new HangmanConsoleWindow();
-	private static String[] word = {"ström", "eld", "vatten", "sol", "sten", "skor", "hund", "katt", "bord", "den", "nej", "hangman"};
+	private static String[] word = {"ström", "eld", "vatten", "sol", "sten", "skor", "hund", "katt", "bord", "den", "nej", "hangman", "vaa", "haa"};
 
 	
 	public static void main(String[] args) {
@@ -93,6 +93,8 @@ public class Hangman {
 			guess++;
 			window.println("Type a letter");
 			guessLetter = window.nextChar();
+			
+			if(Character.isAlphabetic(guessLetter)) {		
 			for(int i = 0; i < playWord.length(); i++) {
 				if(typeWord[i] == '_') {
 					if(splitWord[i] == guessLetter) {
@@ -104,6 +106,9 @@ public class Hangman {
 			}
 			loop = 1;
 			for(int i = 0; i < loop; i++) {
+				if(guessLetter == wrongLetter[i]) {
+					rightLetter = false;
+				}
 				if(wrongLetter[i] == '_' && rightLetter) {
 					wrongLetter[i] = guessLetter;
 					rightLetter = true;
@@ -129,10 +134,14 @@ public class Hangman {
 					}
 					game = false;
 				}
+			}else {
+				invalid();
+			}
 			}
 			hang = false;
 		}
 	}
+
 	
 	
 	public static String ownWord() {

@@ -11,7 +11,6 @@ public class Hangman {
 	private static HangmanConsoleWindow window = new HangmanConsoleWindow();
 	private static String[] word = {"ström", "eld", "vatten", "sol", "sten", "skor", "hund", "katt", "bord", "den", "nej", "hangman", "vaa", "haa"};
 
-	
 	public static void main(String[] args) {
 		
 		boolean playing = true;
@@ -25,7 +24,6 @@ public class Hangman {
 				hangman();
 			}else {
 				window.clear();
-				window.println();
 				window.println("please pick an existing game");
 				try {
 					Thread.sleep(2000);
@@ -69,7 +67,6 @@ public class Hangman {
 		char[] splitWord = stringToArrayList(playWord);	
 		hangman_play(splitWord,playWord);
 	}
-	
 	public static void hangman_play(char[] splitWord, String playWord) {
 		boolean hang  = true;
 		boolean game = true;
@@ -123,16 +120,19 @@ public class Hangman {
 				}
 			}
 
-			game = drawMan(wrong, typeWord, wrongLetter, game);
+			game = drawMan(wrong, typeWord, wrongLetter, game, splitWord);
 			if(right == splitWord.length) {
 					window.clear();
 					window.println("you won!!");
 					window.println("it took you " + guess + " tries");
-					try {
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
+					window.print("the word was ");
+					for(int i = 0; i < splitWord.length; i++) {
+						window.print("" + splitWord[i]);
 					}
+					
+					window.println();
+					window.print("To continue press space");
+					window.nextChar();
 					game = false;
 				}
 			}else {
@@ -149,7 +149,7 @@ public class Hangman {
 		window.println("whats the word?");
 		Playword = window.nextString().toLowerCase();
 		return Playword;
-	}
+		}
 	public static void invalid() {
 		window.clear();
 		window.println("please pick a valid option");
@@ -192,10 +192,12 @@ public class Hangman {
 		}
 		return hang;
 	}	*/
-	public static boolean drawMan(int wrong, char[] typeWord, char[] wrongLetter, boolean game) {
+	public static boolean drawMan(int wrong, char[] typeWord, char[] wrongLetter, boolean game, char[] splitWord) {
 		window.clear();
-		window.println(Arrays.toString(typeWord));
-
+		for(int i = 0; i < typeWord.length; i++) {
+			window.print("" + typeWord[i]);
+		}
+		window.println();
 		if(wrong == 1) {
 			window.print("----------");
 		} else if(wrong == 2) {
@@ -250,6 +252,7 @@ public class Hangman {
 			window.print("-----|----");
 			window.changeTextColor(Color.red);
 		}else if(wrong == 8) {
+			window.clear();
 			window.println("     _________    ");
 			window.println("     |       | ");
 			window.println("     |       |");
@@ -262,14 +265,21 @@ public class Hangman {
 			window.println();
 			window.println("You lose!");
 			window.println();
+			window.print("The word was ");
+			for(int i = 0; i < splitWord.length; i++) {
+				window.print("" + splitWord[i]);
+			}
+			window.println();
 			window.print("To continue press space");
 			window.nextChar();
 			game = false;
 		}
 		window.println();
 		window.println("Wrong Letters");
-		window.println(Arrays.toString(wrongLetter));
-		
+		for(int i = 0; i < wrongLetter.length; i++) {
+			window.print(" " + wrongLetter[i]);	
+		}
+		window.println();
 		return game;
 	}
 	

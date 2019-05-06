@@ -108,6 +108,7 @@ public class Hangman {
 			for(int i = 0; i < loop; i++) {
 				if(guessLetter == wrongLetter[i]) {
 					rightLetter = false;
+					guess--;
 				}
 				if(wrongLetter[i] == '_' && rightLetter) {
 					wrongLetter[i] = guessLetter;
@@ -142,8 +143,6 @@ public class Hangman {
 		}
 	}
 
-	
-	
 	public static String ownWord() {
 		String Playword;
 		window.clear();
@@ -236,9 +235,9 @@ public class Hangman {
 			window.println("     |       | ");
 			window.println("     |       |");
 			window.println("     |       O ");
-			window.println("     |      /|");
-			window.println("     |       |");
-			window.println("     |      /");
+			window.println("     |      /|\\");
+			window.println("     |       ");
+			window.println("     |      ");
 			window.print("-----|----");
 		} else if(wrong == 7) {
 			window.println("     _________    ");
@@ -273,13 +272,5 @@ public class Hangman {
 		
 		return game;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }

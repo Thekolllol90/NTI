@@ -78,36 +78,41 @@ public class Hangman {
 		int right = 0;
 		int guess = 0;
 		int loop = 1;
+		int exsist = 0;
 		char guessLetter = ' '; 
-		char[] wrongLetter = new char[10]; // skapar en char array med 10 platser
+		char[] wrongLetter = new char[8]; // skapar en char array med 10 platser
 		char[] typeWord = new char[playWord.length()]; // skapar en char array med lika många platser som playWord
 		for(int i = 0; i < playWord.length(); i++) { //fyller typeword med _
 			typeWord[i] = '_';
 		}
-		for(int i = 0; i < 10; i++) { //fyller wrongletter med _
+		for(int i = 0; i < 8; i++) { //fyller wrongletter med _
 			wrongLetter[i] = '_';
 		}
+		window.clear();
+		for(int i = 0; i < typeWord.length; i++) {
+			window.print(" " + typeWord[i]);
+		}
+		window.println();
 		while(hang) {
-			window.clear();
 			while(game) {
 			guess++; // lägger till 1 på antal gissningar
 			window.println("Type a letter");
 			guessLetter = window.nextChar(); // sparar bokstaven man gissar
 			
-			if(Character.isAlphabetic(guessLetter)) {		
-			for(int i = 0; i < playWord.length(); i++) {
+			if(Character.isAlphabetic(guessLetter)) {	//kollar så att bokstaven man skriver är en bokstav och inte något annat
+			for(int i = 0; i < playWord.length(); i++) { //en loop som sparar om man skrivit rätt bokstav på rätt plats
 				if(typeWord[i] == '_') {
 					if(splitWord[i] == guessLetter) {
 						typeWord[i] = guessLetter;
-						right++;
-						rightLetter = false;
+						right++; 
+						rightLetter = false; //gör så att den inte sparar
 					}
 				}
 			}
-			loop = 1;
-			for(int i = 0; i < loop; i++) {
+			loop = 1; //sätter den till 1 för att lösa ett problem som gör att den dubblar det den skriver
+			for(int i = 0; i < loop; i++) { //en loop som sparar det som man skrivt fel och bara en gång
 				if(guessLetter == wrongLetter[i]) {
-					rightLetter = false;
+					rightLetter = false; 
 					guess--;
 				}
 				if(wrongLetter[i] == '_' && rightLetter) {
@@ -116,7 +121,7 @@ public class Hangman {
 					wrong++;			
 
 				} else if(rightLetter){
-					loop++;
+					loop++; //gör så att om första platsen redan har något går den till nästa plats
 				} else {
 					rightLetter = true;
 	
@@ -124,18 +129,18 @@ public class Hangman {
 			}
 
 			game = drawMan(wrong, typeWord, wrongLetter, game, splitWord);
-			if(right == splitWord.length) {
+			if(right == splitWord.length) { //kollar så man skrivit rätt på allt
 					window.clear();
 					window.println("you won!!");
 					window.println("it took you " + guess + " tries");
 					window.print("the word was ");
-					for(int i = 0; i < splitWord.length; i++) {
-						window.print("" + splitWord[i]);
+					for(int i = 0; i < splitWord.length; i++) { //skriver ut hela ordet
+						window.print("" + splitWord[i]); 
 					}
 					
 					window.println();
 					window.print("To continue press space");
-					window.nextChar();
+					window.nextChar(); // väntar på att man trycker på en kanpp så går programet vidare
 					game = false;
 				}
 			}else {
@@ -145,36 +150,52 @@ public class Hangman {
 			hang = false;
 		}
 	}
-
+/**
+ * låter en skriva in ett eget ord
+ * @return det egna ordet
+ */
 	public static String ownWord() {
 		String Playword;
 		window.clear();
 		window.println("whats the word?");
-		Playword = window.nextString().toLowerCase();
+		Playword = window.nextString().toLowerCase(); //gör det man skriver till små bockstäver
 		return Playword;
 		}
+	/**
+	 * används om man trycker på en knapp som inte man ska trycka på
+	 */
 	public static void invalid() {
 		window.clear();
 		window.println("please pick a valid option");
 		try {
-			Thread.sleep(2000);
+			Thread.sleep(2000); //stoppar programet i antalet millisekunder
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * tar ett random ord från arraylistan med ord
+	 * @return ordet som är taget ur listan
+	 */
 	public static String generatedWord() {
 		String gWord = "";
-		int random = (int)(Math.random() * 8 + 1);
+		int random = (int)(Math.random() * 14 + 1); //genererar ett random number 
 		for(int i = 0; i < random; i++) {
 			gWord = word[i];
 		}
 		return gWord;
 	}
+	/**
+	 * gör om en string till en char array
+	 * @param playWord oredt som skickas med alltså ett eget ord eller ett random
+	 * @return char array för ordet
+	 */
 	public static char[] stringToArrayList(String playWord) {
-		char[] splitWord = playWord.toCharArray();
+		char[] splitWord = playWord.toCharArray(); //gör om string till char array
 		return splitWord;
 	}
 	/*public static boolean playAgain() {
+
 		boolean hang = false;
 		boolean choose = true;
 		
@@ -195,9 +216,18 @@ public class Hangman {
 		}
 		return hang;
 	}	*/
+	/**
+	 * skriver ut det man gissat, målar en liten gubbe, och skriver ut det man gjort fel
+	 * @param wrong hur många fel man har så den kan måla gubben
+	 * @param typeWord ordet man skriver
+	 * @param wrongLetter bokstäverna man skrivit fel
+	 * @param game om spelat ska kö eller inte
+	 * @param splitWord hela ordet
+	 * @return
+	 */
 	public static boolean drawMan(int wrong, char[] typeWord, char[] wrongLetter, boolean game, char[] splitWord) {
 		window.clear();
-		for(int i = 0; i < typeWord.length; i++) {
+		for(int i = 0; i < typeWord.length; i++) { //skriver ut det man kommit fram till
 			window.print(" " + typeWord[i]);
 		}
 		window.println();
@@ -225,7 +255,7 @@ public class Hangman {
 			window.println("     |    ");
 			window.println("     |    ");
 			window.print("----/|\\----");
-			window.changeTextColor(Color.yellow);
+			window.changeTextColor(Color.yellow); //gör om färgen till gul
 		} else if(wrong == 5) {
 			window.println("     _________    ");
 			window.println("     |/     \\| ");
@@ -253,7 +283,7 @@ public class Hangman {
 			window.println("     |       |");
 			window.println("     |      /");
 			window.print("----/|\\----");
-			window.changeTextColor(Color.red);
+			window.changeTextColor(Color.red); //gör om rägen till röd
 		}else if(wrong == 8) {
 			window.clear();
 			window.println("     _________    ");
@@ -269,7 +299,7 @@ public class Hangman {
 			window.println("You lose!");
 			window.println();
 			window.print("The word was ");
-			for(int i = 0; i < splitWord.length; i++) {
+			for(int i = 0; i < splitWord.length; i++) { //skriver ut ordet
 				window.print("" + splitWord[i]);
 			}
 			window.println();
